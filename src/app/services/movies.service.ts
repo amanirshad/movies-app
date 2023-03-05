@@ -6,9 +6,14 @@ import { HttpClient } from '@angular/common/http'
 })
 export class MoviesService {
 
+  baseUrl: string = 'https://api.themoviedb.org/3';
+  apiKey: string = 'a67d717cb525beee5b05921973aab6b1';
+
   constructor(private http: HttpClient) { }
 
-  getMovies(){
-      return this.http.get('https://api.themoviedb.org/3/movie/upcoming?api_key=a67d717cb525beee5b05921973aab6b1')
+  getMovies(type: string = 'upcoming'){
+      return this.http.get(
+        `${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`
+      )
   }
 }
