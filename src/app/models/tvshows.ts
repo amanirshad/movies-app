@@ -1,5 +1,12 @@
 import { Movie } from './movie';
 export interface TvShows extends Movie {}
+
+export interface TvShowsDto {
+    page: number;
+    results: TvShows[];
+    total_results: number;
+    total_pages: number;
+  }
 // export interface TvShows{
 
 //         backdrop_path: string,

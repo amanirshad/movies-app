@@ -8,7 +8,8 @@
             <img [src]="imagesSizes.medium+itemData.poster_path"
             [alt]="itemData.title">
         </div>
-        <div class="movie-item-title">{{itemData.title}}</div>
+        <div *ngIf="itemData.title" class="movie-item-title">{{itemData.title}}</div>
+        <div *ngIf="itemData.name" class="movie-item-title">{{itemData.name}}</div>
     </a>
 </ng-container>
 

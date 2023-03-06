@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieDto } from '../models/movie';
 import { of, switchMap } from 'rxjs';
+import { TvShowsDto } from '../models/tvshows';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,13 @@ export class MoviesService {
       })
     );
   }
+
+  getTvs(type: string = 'latest', count: number = 12) {
+    return this.http.get<TvShowsDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(
+      switchMap((res) => {
+        return of(res.results.slice(0, count));
+      })
+    );
+  }
 }
+

@@ -11,7 +11,7 @@ export class ItemsBannerComponent {
 
   @Input() items: Movie[] = [];
 
-  @Input() tvShowItems: TvShows[] = []
+  //@Input() tvShowItems: TvShows[] = []
 
   @Input() title: string = '';
 
