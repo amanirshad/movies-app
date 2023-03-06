@@ -13,8 +13,16 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.moviesService.getMovies('popular', 20).subscribe((movies) => {
+    this.getPagedMovie(1);
+  }
+
+  getPagedMovie(page: number) {
+    this.moviesService.searchMovies(page).subscribe((movies) => {
       this.movies = movies;
     });
+  }
+
+  paginate(event: any) {
+    this.getPagedMovie(event.page+1);
   }
 }
