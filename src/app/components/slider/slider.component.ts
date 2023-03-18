@@ -7,25 +7,22 @@ import { IMAGES_SIZES } from '../../constants/images-sizes';
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
-  animations: [
-    trigger('slideFade', [
-      state('void', style({opacity: 0})),
-      transition('void <=> *',[animate('1s')])
-    ])
-  ]
+  animations: [trigger('slideFade', [state('void', style({ opacity: 0 })), transition('void <=> *', [animate('1s')])])]
 })
-export class SliderComponent implements OnInit{
+export class SliderComponent implements OnInit {
   @Input() items: Movie[] = [];
+
+  @Input() isBanner: boolean = false;
 
   currentSlideIndex: number = 0;
 
   readonly imageSizes = IMAGES_SIZES;
 
-
-  ngOnInit(): void { 
-    setInterval(()=>{
-      this.currentSlideIndex = ++this.currentSlideIndex % this.items.length;
-    },5000)
+  ngOnInit(): void {
+    if (!this.isBanner) {
+      setInterval(() => {
+        this.currentSlideIndex = ++this.currentSlideIndex % this.items.length;
+      }, 5000);
+    }
   }
-
 }
