@@ -13,7 +13,7 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  getMovies(type: string = 'upcoming',count: number = 12) {
+  getMovies(type: string = 'upcoming',count: number = 18) {
     return this.http.get<MovieDto>(`${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`).pipe(
       switchMap((response) => {
         return of(response.results.slice(0,count));
@@ -34,7 +34,7 @@ export class MoviesService {
     );
   }
 
-  getTvs(type: string = 'latest', count: number = 12) {
+  getTvs(type: string = 'latest', count: number = 18) {
     return this.http.get<TvShowsDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(
       switchMap((res) => {
         return of(res.results.slice(0, count));
