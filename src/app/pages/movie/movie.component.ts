@@ -35,6 +35,7 @@ export class MovieComponent implements OnInit {
   getMovieVideos(id: string){
     this.moviesService.getMovieVideos(id).subscribe((movieVideoData)=>{
       this.movieVideos = movieVideoData;
+      console.log(this.movieVideos)
     })
   }
 }
