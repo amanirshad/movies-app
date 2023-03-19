@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Movie, MovieDto, MovieVideoDto } from '../models/movie';
+import { Movie, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
 import { of, switchMap } from 'rxjs';
 import { TvShowsDto } from '../models/tvshows';
 
@@ -13,16 +13,16 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  getMovies(type: string = 'upcoming',count: number = 18) {
+  getMovies(type: string = 'upcoming', count: number = 18) {
     return this.http.get<MovieDto>(`${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`).pipe(
       switchMap((response) => {
-        return of(response.results.slice(0,count));
+        return of(response.results.slice(0, count));
       })
     );
   }
-  
-  getMovie(id: string){
-    return this.http.get<Movie>(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}`)
+
+  getMovie(id: string) {
+    return this.http.get<Movie>(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}`);
   }
 
   getMovieVideos(id: string) {
@@ -32,7 +32,10 @@ export class MoviesService {
       })
     );
   }
-  
+
+  getMovieImages(id: string) {
+    return this.http.get<MovieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`);
+  }
 
   searchMovies(page: number) {
     return this.http.get<MovieDto>(`${this.baseUrl}/movie/popular?page=${page}&api_key=${this.apiKey}`).pipe(
@@ -50,4 +53,3 @@ export class MoviesService {
     );
   }
 }
-
