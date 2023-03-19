@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
+import { first } from 'rxjs';
 import { IMAGES_SIZES } from '../../constants/images-sizes';
 import { Movie, MovieCredits, MovieImages, MovieVideo } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
@@ -9,7 +10,7 @@ import { MoviesService } from '../../services/movies.service';
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.scss']
 })
-export class MovieComponent implements OnInit {
+export class MovieComponent implements OnInit, OnDestroy {
   movie: Movie | null = null;
 
   movieVideos: MovieVideo[] = [];
@@ -21,9 +22,12 @@ export class MovieComponent implements OnInit {
   imagesSizes = IMAGES_SIZES;
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
+  ngOnDestroy(): void {
+    console.log('component destroyed');
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe(({ id }) => {
+    this.route.params.pipe(first()).subscribe(({ id }) => {
       this.getMovie(id);
       this.getMovieVideos(id);
       this.getMovieImages(id);
@@ -52,10 +56,10 @@ export class MovieComponent implements OnInit {
     });
   }
 
-  getMovieCredits(id: string){
-    this.moviesService.getMovieCredits(id).subscribe((movieCreditsData)=>{
+  getMovieCredits(id: string) {
+    this.moviesService.getMovieCredits(id).subscribe((movieCreditsData) => {
       this.movieCredits = movieCreditsData;
       console.log(this.movieCredits);
-    })
+    });
   }
 }
