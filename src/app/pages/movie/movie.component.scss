@@ -1,5 +1,7 @@
 @import '../../../styles/colors';
 
+
+
 :host ::ng-deep {
   .p-tabview-nav {
     justify-content: center;
@@ -17,25 +19,25 @@
 }
 
 .poster {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .overview {
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
 .stat {
-    display: flex;
-    margin-bottom: 15px;
+  display: flex;
+  margin-bottom: 15px;
 
-    .label {
-        width: 150px;
-        font-weight: bold;
-    }
+  .label {
+    width: 150px;
+    font-weight: bold;
+  }
 
-    .value {
-        color: $primaryColour;
-    }
+  .value {
+    color: $primaryColour;
+  }
 }
 
 .actor {
@@ -49,3 +51,5 @@
     margin: 10px 0;
   }
 }
+
+

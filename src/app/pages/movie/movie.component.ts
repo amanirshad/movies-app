@@ -19,6 +19,8 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   movieCredits: MovieCredits | null = null;
 
+  movieSimilar: Movie[] = [];
+
   imagesSizes = IMAGES_SIZES;
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
@@ -32,6 +34,7 @@ export class MovieComponent implements OnInit, OnDestroy {
       this.getMovieVideos(id);
       this.getMovieImages(id);
       this.getMovieCredits(id);
+      this.getSimilarMovies(id);
     });
   }
 
@@ -61,5 +64,12 @@ export class MovieComponent implements OnInit, OnDestroy {
       this.movieCredits = movieCreditsData;
       console.log(this.movieCredits);
     });
+  }
+
+  getSimilarMovies(id: string){
+    this.moviesService.getSimilarMovies(id).subscribe((similarMoviesData)=>{
+      this.movieSimilar = similarMoviesData;
+      console.log(this.movieSimilar);
+    })
   }
 }

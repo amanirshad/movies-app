@@ -72,7 +72,9 @@
       </div>
     </p-tabPanel>
   </p-tabView>
+  
   <ng-container *ngIf="movieCredits">
+    <h2>Cast</h2>
     <p-carousel [value]="movieCredits.cast" [numVisible]="5">
       <ng-template let-actor pTemplate="item">
         <div class="actor">
@@ -82,4 +84,11 @@
       </ng-template>
     </p-carousel>
   </ng-container>
+  
+  <h2 class="similar">Similar Movies</h2>
+  <div class="grid">
+    <div class="col-2 md:col-3 lg:col-3" *ngFor="let movie of movieSimilar">
+      <item [itemData]="movie"></item>
+    </div>
+  </div>
 </ng-container>
