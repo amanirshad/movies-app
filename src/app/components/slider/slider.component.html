@@ -7,6 +7,7 @@
           <img class="slide-bg-image" [src]="imageSizes.large + item.backdrop_path" alt="" />
         </div>
         <div class="slide-pane">
+          <h2 *ngIf="item.name" class="name">{{item.name}}</h2>
           <h2 class="name">{{item.title}}</h2>
           <div class="meta">
             <div class="info">
